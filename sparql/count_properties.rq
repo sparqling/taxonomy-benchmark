@@ -1,0 +1,10 @@
+#!/usr/bin/env spang2
+# @endpoint test
+# @option -ac
+
+SELECT ?pred (COUNT(?taxon) AS ?count)
+WHERE {
+  ?taxon a taxon:Taxon ;
+         ?pred ?o .
+}
+ORDER BY DESC(?count)

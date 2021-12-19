@@ -1,0 +1,10 @@
+#!/usr/bin/env spang2
+# @endpoint test
+# @option -a
+
+SELECT ?taxon (COUNT(?name) AS ?count)
+WHERE {
+  ?taxon a taxon:Taxon ;
+         taxon:commonName ?name .
+}
+ORDER BY DESC(?count)
