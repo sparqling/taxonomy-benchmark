@@ -37,11 +37,10 @@ while (<NAMES>) {
                     $SCIENTIFIC_NAME{$taxid} = "        :$predicate $name ;\n";
                 }
             } else {
-                if ($NAMES{$taxid}) {
-                    $NAMES{$taxid} .= " ;\n";
-                    $NAMES{$taxid} .= "        :$predicate $name";
+                if ($NAMES{$taxid}{$predicate}) {
+                    $NAMES{$taxid}{$predicate} .= ", $name";
                 } else {
-                    $NAMES{$taxid} = "        :$predicate $name";
+                    $NAMES{$taxid}{$predicate} = "        :$predicate $name";
                 }
             }
         } else {
@@ -75,8 +74,8 @@ while (<NODES>) {
             print "taxid:$taxid a :Taxon ;\n";
             print "        :rank :$rank_uc ;\n";
             print $scientific_name;
-            if ($NAMES{$taxid}) {
-                print $NAMES{$taxid}, " ;\n";
+            for my $predicate (keys %{$NAMES{$taxid}}) {
+                print $NAMES{$taxid}{$predicate}, " ;\n";
             }
             print "        rdfs:subClassOf taxid:$parent .\n";
         } else {
