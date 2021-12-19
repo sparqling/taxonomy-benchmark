@@ -1,11 +1,11 @@
 PREFIX : <http://ddbj.nig.ac.jp/ontologies/taxonomy/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-(t:Taxon {scientificName:s})
+(t:taxon {scientific_name:s, rank:r})
   ?t a :Taxon ;
      :scientificName ?s .
 
-(t1:Taxon)-[:subClassOf]->(t2:Taxon)
+(t1:taxon)-[:parent_taxon]->(t2:taxon)
   ?t1 rdfs:subClassOf ?t2 .
 
 #endpoint https://spang.dbcls.jp/sparql-test
