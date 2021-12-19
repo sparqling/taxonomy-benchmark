@@ -3,9 +3,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 (t:taxon {scientific_name:s, rank:r})
   ?t a :Taxon ;
+     :rank ?rank ;
      :scientificName ?s .
+  ?rank rdfs:label ?r .
 
 (t1:taxon)-[:parent_taxon]->(t2:taxon)
   ?t1 rdfs:subClassOf ?t2 .
 
-#endpoint https://spang.dbcls.jp/sparql-test
+#endpoint https://orth.dbcls.jp/sparql-orth3
